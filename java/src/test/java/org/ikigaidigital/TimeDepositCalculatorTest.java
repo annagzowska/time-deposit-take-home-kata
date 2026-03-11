@@ -1,17 +1,27 @@
 package org.ikigaidigital;
 
+import org.ikigaidigital.application.service.interest.InterestCalculationStrategy;
+import org.ikigaidigital.application.service.interest.InterestCalculationStrategyResolver;
+import org.ikigaidigital.domain.PlanType;
+import org.ikigaidigital.domain.TimeDeposit;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TimeDepositCalculatorTest {
+
+    @Mock
+    private InterestCalculationStrategyResolver calculationStrategyResolver;
+
     @Test
     public void updateBalance_Test() {
-        TimeDepositCalculator calc = new TimeDepositCalculator();
+        TimeDepositCalculator calc = new TimeDepositCalculator(calculationStrategyResolver);
         List<TimeDeposit> plans = Arrays.asList(
-            new TimeDeposit(1,"basic", 1234567.00, 45)
+            new TimeDeposit(1, PlanType.BASIC, BigDecimal.valueOf(1234567.00), 45)
         );
         calc.updateBalance(plans);
 
