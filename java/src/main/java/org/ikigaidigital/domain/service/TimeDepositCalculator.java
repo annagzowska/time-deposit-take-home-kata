@@ -17,6 +17,9 @@ public class TimeDepositCalculator {
     private final InterestCalculationStrategyResolver calculationStrategyResolver;
 
     public void updateBalance(List<TimeDeposit> timeDeposits) {
+        if (timeDeposits == null) {
+            throw new IllegalArgumentException("Time deposits cannot be null");
+        }
         timeDeposits.forEach(deposit -> {
             final InterestCalculationStrategy strategy = calculationStrategyResolver.resolve(deposit.getPlanType());
             final BigDecimal roundedInterest = strategy.calculate(deposit).setScale(2, RoundingMode.HALF_UP);
