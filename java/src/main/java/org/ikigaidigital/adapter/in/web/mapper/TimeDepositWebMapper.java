@@ -2,18 +2,22 @@ package org.ikigaidigital.adapter.in.web.mapper;
 
 import lombok.NoArgsConstructor;
 import org.ikigaidigital.adapter.in.web.dto.TimeDepositDto;
-import org.ikigaidigital.domain.TimeDeposit;
+import org.ikigaidigital.adapter.in.web.dto.WithdrawalDto;
+import org.ikigaidigital.domain.model.TimeDeposit;
 
-import java.util.Collections;
+import java.util.List;
 
 @NoArgsConstructor
 public class TimeDepositWebMapper {
 
     public static TimeDepositDto toDto(TimeDeposit timeDeposit) {
-        return new TimeDepositDto(timeDeposit.getId(), timeDeposit.getPlanType(), timeDeposit.getBalance(), timeDeposit.getDays());
-    }
-
-    public static TimeDeposit toDomain(TimeDepositDto timeDepositDto) {
-        return new TimeDeposit(timeDepositDto.id(), timeDepositDto.planType(), timeDepositDto.balance(), timeDepositDto.days(), Collections.emptyList());
+        final List<WithdrawalDto> withdrawals = timeDeposit.getWithdrawals().stream().map(WithdrawalWebMapper::toDto).toList();
+        return TimeDepositDto.builder()
+                .id(timeDeposit.getId())
+                .planType(timeDeposit.getPlanType())
+                .balance(timeDeposit.getBalance())
+                .days(timeDeposit.getDays())
+                .withdrawals(withdrawals)
+                .build();
     }
 }

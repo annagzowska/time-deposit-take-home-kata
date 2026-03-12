@@ -1,10 +1,13 @@
 package org.ikigaidigital.adapter.in.web.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.ikigaidigital.domain.PlanType;
+import lombok.Builder;
+import org.ikigaidigital.domain.model.PlanType;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+@Builder
 @Schema(description = "Time deposit response")
 public record TimeDepositDto(
         @Schema(description = "Time deposit identifier", example = "1")
@@ -14,5 +17,8 @@ public record TimeDepositDto(
         @Schema(description = "Current balance", example = "1000.00")
         BigDecimal balance,
         @Schema(description = "Number of days since opening", example = "60")
-        int days) {
+        int days,
+        @Schema(description = "Withdrawals assigned to the time deposit")
+        List<WithdrawalDto> withdrawals
+        ) {
 }

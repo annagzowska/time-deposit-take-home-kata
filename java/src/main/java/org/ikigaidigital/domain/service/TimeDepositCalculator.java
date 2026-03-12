@@ -3,7 +3,7 @@ package org.ikigaidigital.domain.service;
 import lombok.RequiredArgsConstructor;
 import org.ikigaidigital.domain.service.interest.InterestCalculationStrategy;
 import org.ikigaidigital.domain.service.interest.InterestCalculationStrategyResolver;
-import org.ikigaidigital.domain.TimeDeposit;
+import org.ikigaidigital.domain.model.TimeDeposit;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,12 +16,12 @@ public class TimeDepositCalculator {
 
     private final InterestCalculationStrategyResolver calculationStrategyResolver;
 
-    public void updateBalance(List<TimeDeposit> xs) {
-        xs.forEach(x -> {
-            final InterestCalculationStrategy strategy = calculationStrategyResolver.resolve(x.getPlanType());
-            final BigDecimal roundedInterest = strategy.calculate(x).setScale(2, RoundingMode.HALF_UP);
-            final BigDecimal updatedBalance = x.getBalance().add(roundedInterest);
-            x.setBalance(updatedBalance);
+    public void updateBalance(List<TimeDeposit> timeDeposits) {
+        timeDeposits.forEach(deposit -> {
+            final InterestCalculationStrategy strategy = calculationStrategyResolver.resolve(deposit.getPlanType());
+            final BigDecimal roundedInterest = strategy.calculate(deposit).setScale(2, RoundingMode.HALF_UP);
+            final BigDecimal updatedBalance = deposit.getBalance().add(roundedInterest);
+            deposit.setBalance(updatedBalance);
         });
     }
 }

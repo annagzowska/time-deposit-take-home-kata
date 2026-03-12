@@ -27,17 +27,17 @@ public class TimeDepositController {
     @GetMapping
     @Operation(summary = "Get all time deposits", description = "Returns all time deposits")
     public ResponseEntity<List<TimeDepositDto>> getTimeDeposits() {
-        List<TimeDepositDto> timeDepositDtos = getTimeDepositsUseCase.getTimeDeposits()
+        List<TimeDepositDto> timeDeposits = getTimeDepositsUseCase.getTimeDeposits()
                 .stream()
                 .map(TimeDepositWebMapper::toDto)
                 .toList();
-        return ResponseEntity.ok(timeDepositDtos);
+        return ResponseEntity.ok(timeDeposits);
     }
 
     @PostMapping("/update-balance")
     @Operation(summary = "Update balances", description = "Updates balances for saved time deposits")
-    public ResponseEntity<Void> updateTimeDepositsBalance() {
-        updateTimeDepositsBalanceUseCase.updateAllTimeDepositsBalance();
+    public ResponseEntity<Void> updateBalancesForTimeDeposits() {
+        updateTimeDepositsBalanceUseCase.updateBalancesForAllTimeDeposits();
         return ResponseEntity.ok().build();
     }
 }

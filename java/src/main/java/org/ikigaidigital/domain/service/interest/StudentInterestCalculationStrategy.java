@@ -1,8 +1,8 @@
 package org.ikigaidigital.domain.service.interest;
 
 import lombok.RequiredArgsConstructor;
-import org.ikigaidigital.domain.PlanType;
-import org.ikigaidigital.domain.TimeDeposit;
+import org.ikigaidigital.domain.model.PlanType;
+import org.ikigaidigital.domain.model.TimeDeposit;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

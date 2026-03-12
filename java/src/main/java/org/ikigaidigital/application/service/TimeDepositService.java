@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.ikigaidigital.application.port.in.GetTimeDepositsUseCase;
 import org.ikigaidigital.application.port.in.UpdateTimeDepositsBalanceUseCase;
 import org.ikigaidigital.application.port.out.TimeDepositPersistencePort;
-import org.ikigaidigital.domain.TimeDeposit;
+import org.ikigaidigital.domain.model.TimeDeposit;
 import org.ikigaidigital.domain.service.TimeDepositCalculator;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class TimeDepositService implements GetTimeDepositsUseCase, UpdateTimeDep
     }
 
     @Override
-    public void updateAllTimeDepositsBalance() {
+    public void updateBalancesForAllTimeDeposits() {
         List<TimeDeposit> allDeposits = timeDepositPersistencePort.findAll();
         timeDepositCalculator.updateBalance(allDeposits);
         timeDepositPersistencePort.saveAll(allDeposits);

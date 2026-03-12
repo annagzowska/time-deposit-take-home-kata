@@ -2,8 +2,8 @@ package org.ikigaidigital;
 
 import org.ikigaidigital.domain.service.TimeDepositCalculator;
 import org.ikigaidigital.domain.service.interest.InterestCalculationStrategyResolver;
-import org.ikigaidigital.domain.PlanType;
-import org.ikigaidigital.domain.TimeDeposit;
+import org.ikigaidigital.domain.model.PlanType;
+import org.ikigaidigital.domain.model.TimeDeposit;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
