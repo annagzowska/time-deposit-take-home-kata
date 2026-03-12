@@ -62,3 +62,57 @@ A junior developer implemented domain logic for a time deposit system but did no
 ### Submission Instructions
 - Provide clear instructions on how to trigger the endpoints using the Swagger contract.
 - Email the link to your public GitHub repository.
+
+## Running the project
+- Navigate to the project directory
+- Run the application with Maven: `mvn spring-boot:run`
+- The application starts on: `http://localhost:8080`
+
+### Swagger / OpenAPI
+- After starting the application, open Swagger UI in the browser: ` http://localhost:8080/swagger-ui/index.html`
+
+### Available endpoints
+- The application exposes exactly two REST endpoints:
+
+### 1. Get all time deposits
+`GET /api/time-deposits`
+
+Returns all time deposits with:
+- `id`
+- `planType`
+- `balance`
+- `days`
+- `withdrawals`
+
+### 2. Update balances for all time deposits
+`POST /api/time-deposits/update-balances`
+
+Updates balances for all stored time deposits according to the business rules.
+
+### How to trigger endpoints using Swagger
+
+1. Start the application
+2. Open Swagger UI:
+   ```text
+   http://localhost:8080/swagger-ui/index.html
+   ```
+3. Expand one of the available operations:
+    - `GET /time-deposits`
+    - `POST /time-deposits/update-balance`
+4. Click **Try it out**
+5. Click **Execute**
+
+Recommended flow:
+1. Execute `GET /time-deposits`
+2. Execute `POST /time-deposits/update-balance`
+3. Execute `GET /time-deposits` again to verify updated balances
+
+### Running tests
+
+Run unit tests with: `mvn test`
+
+### Integration test note
+
+The integration test based on Testcontainers requires Docker to be running.
+
+If Docker is not available, the integration test should be skipped or disabled locally.
