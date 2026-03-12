@@ -36,6 +36,7 @@ class TimeDepositControllerTest {
 
     @Test
     void shouldReturnAllTimeDeposits() throws Exception {
+        //given
         Withdrawal withdrawal = Withdrawal.builder()
                 .id(1)
                 .amount(BigDecimal.valueOf(100.00))
@@ -52,6 +53,7 @@ class TimeDepositControllerTest {
 
         when(getTimeDepositsUseCase.getTimeDeposits()).thenReturn(List.of(timeDeposit));
 
+        //when & then
         mockMvc.perform(get("/time-deposits"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith("application/json"))
@@ -68,8 +70,10 @@ class TimeDepositControllerTest {
 
     @Test
     void shouldUpdateBalancesForAllTimeDeposits() throws Exception {
+        //given
         doNothing().when(updateTimeDepositsBalanceUseCase).updateBalancesForAllTimeDeposits();
 
+        //when & then
         mockMvc.perform(post("/time-deposits/update-balance"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(""));

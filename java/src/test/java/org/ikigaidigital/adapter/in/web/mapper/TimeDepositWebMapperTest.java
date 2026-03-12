@@ -17,6 +17,7 @@ class TimeDepositWebMapperTest {
 
     @Test
     void shouldMapTimeDepositToDtoWithAllFields() {
+        //given
         Withdrawal firstWithdrawal = Withdrawal.builder()
                 .id(1)
                 .amount(BigDecimal.valueOf(100.00))
@@ -37,8 +38,10 @@ class TimeDepositWebMapperTest {
                 List.of(firstWithdrawal, secondWithdrawal)
         );
 
+        //when
         TimeDepositDto result = TimeDepositWebMapper.toDto(timeDeposit);
 
+        //then
         assertThat(result).isNotNull();
         assertThat(result.id()).isEqualTo(10);
         assertThat(result.planType()).isEqualTo(PlanType.BASIC);
@@ -59,6 +62,7 @@ class TimeDepositWebMapperTest {
 
     @Test
     void shouldMapTimeDepositToDtoWithEmptyWithdrawalsList() {
+        //given
         TimeDeposit timeDeposit = new TimeDeposit(
                 11,
                 PlanType.PREMIUM,
@@ -67,8 +71,10 @@ class TimeDepositWebMapperTest {
                 List.of()
         );
 
+        //when
         TimeDepositDto result = TimeDepositWebMapper.toDto(timeDeposit);
 
+        //then
         assertThat(result).isNotNull();
         assertThat(result.id()).isEqualTo(11);
         assertThat(result.planType()).isEqualTo(PlanType.PREMIUM);

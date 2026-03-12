@@ -32,6 +32,7 @@ class TimeDepositPersistenceAdapterTest {
 
     @Test
     void shouldFindAllTimeDeposits() {
+        //given
         TimeDepositEntity timeDepositEntity = TimeDepositEntity.builder()
                 .id(1)
                 .planType("basic")
@@ -50,8 +51,10 @@ class TimeDepositPersistenceAdapterTest {
 
         when(timeDepositRepository.findAll()).thenReturn(List.of(timeDepositEntity));
 
+        //when
         List<TimeDeposit> result = adapter.findAll();
 
+        //then
         assertThat(result).hasSize(1);
 
         TimeDeposit timeDeposit = result.get(0);
@@ -71,6 +74,7 @@ class TimeDepositPersistenceAdapterTest {
 
     @Test
     void shouldSaveAllMappedEntities() {
+        //given
         Withdrawal withdrawal = Withdrawal.builder()
                 .id(20)
                 .amount(BigDecimal.valueOf(50.00))
@@ -85,8 +89,10 @@ class TimeDepositPersistenceAdapterTest {
                 List.of(withdrawal)
         );
 
+        //when
         adapter.saveAll(List.of(timeDeposit));
 
+        //then
         ArgumentCaptor<List<TimeDepositEntity>> captor = ArgumentCaptor.forClass(List.class);
         verify(timeDepositRepository).saveAll(captor.capture());
 

@@ -14,6 +14,7 @@ class WithdrawalPersistenceMapperTest {
 
     @Test
     void shouldMapWithdrawalEntityToDomain() {
+        //given
         TimeDepositEntity timeDepositEntity = TimeDepositEntity.builder()
                 .id(10)
                 .planType("basic")
@@ -28,8 +29,10 @@ class WithdrawalPersistenceMapperTest {
                 .date(LocalDate.of(2026, 3, 1))
                 .build();
 
+        //when
         Withdrawal result = WithdrawalPersistenceMapper.toDomain(withdrawalEntity);
 
+        //then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(1);
         assertThat(result.getAmount()).isEqualByComparingTo("100.00");
@@ -38,6 +41,7 @@ class WithdrawalPersistenceMapperTest {
 
     @Test
     void shouldMapWithdrawalToEntity() {
+        //given
         Withdrawal withdrawal = Withdrawal.builder()
                 .id(2)
                 .amount(BigDecimal.valueOf(50.00))
@@ -51,8 +55,10 @@ class WithdrawalPersistenceMapperTest {
                 .days(120)
                 .build();
 
+        //when
         WithdrawalEntity result = WithdrawalPersistenceMapper.toEntity(withdrawal, timeDepositEntity);
 
+        //then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(2);
         assertThat(result.getTimeDeposit()).isSameAs(timeDepositEntity);

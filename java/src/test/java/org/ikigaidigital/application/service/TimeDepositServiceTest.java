@@ -31,6 +31,7 @@ class TimeDepositServiceTest {
 
     @Test
     void shouldReturnAllTimeDeposits() {
+        //given
         List<TimeDeposit> timeDeposits = List.of(
                 new TimeDeposit(1, PlanType.BASIC, BigDecimal.valueOf(1000.00), 60, List.of()),
                 new TimeDeposit(2, PlanType.STUDENT, BigDecimal.valueOf(1500.00), 120, List.of())
@@ -38,14 +39,17 @@ class TimeDepositServiceTest {
 
         when(timeDepositPersistencePort.findAll()).thenReturn(timeDeposits);
 
+        //when
         List<TimeDeposit> result = timeDepositService.getTimeDeposits();
 
+        //then
         assertThat(result).isEqualTo(timeDeposits);
         verify(timeDepositPersistencePort).findAll();
     }
 
     @Test
     void shouldUpdateBalancesForAllTimeDeposits() {
+        //given
         List<TimeDeposit> timeDeposits = List.of(
                 new TimeDeposit(1, PlanType.BASIC, BigDecimal.valueOf(1000.00), 60, List.of()),
                 new TimeDeposit(2, PlanType.PREMIUM, BigDecimal.valueOf(3000.00), 90, List.of())
@@ -53,8 +57,10 @@ class TimeDepositServiceTest {
 
         when(timeDepositPersistencePort.findAll()).thenReturn(timeDeposits);
 
+        //when
         timeDepositService.updateBalancesForAllTimeDeposits();
 
+        //then
         InOrder inOrder = inOrder(timeDepositPersistencePort, timeDepositCalculator);
         inOrder.verify(timeDepositPersistencePort).findAll();
         inOrder.verify(timeDepositCalculator).updateBalance(timeDeposits);

@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class TimeDepositPersistenceMapperTest {
     @Test
     void shouldMapTimeDepositToEntity() {
+        //given
         Withdrawal withdrawal = Withdrawal.builder()
                 .id(1)
                 .amount(BigDecimal.valueOf(100.00))
@@ -31,8 +32,10 @@ class TimeDepositPersistenceMapperTest {
                 List.of(withdrawal)
         );
 
+        //when
         TimeDepositEntity result = TimeDepositPersistenceMapper.toEntity(timeDeposit);
 
+        //then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(10);
         assertThat(result.getPlanType()).isEqualTo("basic");
@@ -49,6 +52,7 @@ class TimeDepositPersistenceMapperTest {
 
     @Test
     void shouldMapTimeDepositToEntityWithEmptyWithdrawalsWhenSourceWithdrawalsIsNull() {
+        //given
         TimeDeposit timeDeposit = new TimeDeposit(
                 11,
                 PlanType.PREMIUM,
@@ -57,8 +61,10 @@ class TimeDepositPersistenceMapperTest {
                 null
         );
 
+        //when
         TimeDepositEntity result = TimeDepositPersistenceMapper.toEntity(timeDeposit);
 
+        //then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(11);
         assertThat(result.getPlanType()).isEqualTo("premium");
@@ -76,6 +82,7 @@ class TimeDepositPersistenceMapperTest {
 
     @Test
     void shouldMapEntityToDomain() {
+        //given
         TimeDepositEntity timeDepositEntity = TimeDepositEntity.builder()
                 .id(20)
                 .planType("student")
@@ -92,8 +99,10 @@ class TimeDepositPersistenceMapperTest {
 
         timeDepositEntity.setWithdrawals(List.of(withdrawalEntity));
 
+        //when
         TimeDeposit result = TimeDepositPersistenceMapper.toDomain(timeDepositEntity);
 
+        //then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(20);
         assertThat(result.getPlanType()).isEqualTo(PlanType.STUDENT);
