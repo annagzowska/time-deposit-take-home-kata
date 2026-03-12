@@ -5,6 +5,8 @@ import org.ikigaidigital.adapter.out.persistence.entity.TimeDepositEntity;
 import org.ikigaidigital.domain.PlanType;
 import org.ikigaidigital.domain.TimeDeposit;
 
+import java.util.Collections;
+
 @NoArgsConstructor
 public class TimeDepositPersistenceMapper {
 
@@ -19,6 +21,6 @@ public class TimeDepositPersistenceMapper {
     }
 
     public static TimeDeposit toDomain(TimeDepositEntity entity) {
-        return new TimeDeposit(entity.getId(), PlanType.valueOf(entity.getPlanType()), entity.getBalance(), entity.getDays());
+        return new TimeDeposit(entity.getId(), PlanType.valueOf(entity.getPlanType()), entity.getBalance(), entity.getDays(), Collections.emptyList());
     }
 }

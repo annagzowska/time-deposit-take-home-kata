@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -25,5 +26,5 @@ public class WithdrawalEntity {
     private BigDecimal amount;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
 }
