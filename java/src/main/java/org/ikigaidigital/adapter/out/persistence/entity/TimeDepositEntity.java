@@ -1,10 +1,7 @@
 package org.ikigaidigital.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,6 +22,7 @@ public class TimeDepositEntity {
     private String planType;
     private BigDecimal balance;
     private int days;
+    @Setter
     @OneToMany(mappedBy = "timeDeposit", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
     private List<WithdrawalEntity> withdrawals = new ArrayList<>();
 

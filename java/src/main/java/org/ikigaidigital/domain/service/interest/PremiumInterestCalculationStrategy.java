@@ -18,7 +18,7 @@ public class PremiumInterestCalculationStrategy implements InterestCalculationSt
 
     @Override
     public boolean supports(PlanType planType) {
-        return PlanType.STUDENT.equals(planType);
+        return PlanType.PREMIUM.equals(planType);
     }
 
     @Override
