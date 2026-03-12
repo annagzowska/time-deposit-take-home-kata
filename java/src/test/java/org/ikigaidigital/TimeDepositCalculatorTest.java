@@ -1,7 +1,7 @@
 package org.ikigaidigital;
 
-import org.ikigaidigital.application.service.TimeDepositCalculator;
-import org.ikigaidigital.application.service.interest.InterestCalculationStrategyResolver;
+import org.ikigaidigital.domain.service.TimeDepositCalculator;
+import org.ikigaidigital.domain.service.interest.InterestCalculationStrategyResolver;
 import org.ikigaidigital.domain.PlanType;
 import org.ikigaidigital.domain.TimeDeposit;
 import org.junit.jupiter.api.Test;

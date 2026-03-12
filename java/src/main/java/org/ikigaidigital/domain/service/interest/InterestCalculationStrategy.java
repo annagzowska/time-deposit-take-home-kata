@@ -1,4 +1,4 @@
-package org.ikigaidigital.application.service.interest;
+package org.ikigaidigital.domain.service.interest;
 
 import org.ikigaidigital.domain.PlanType;
 import org.ikigaidigital.domain.TimeDeposit;

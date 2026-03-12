@@ -1,4 +1,4 @@
-package org.ikigaidigital.application.service.interest;
+package org.ikigaidigital.domain.service.interest;
 
 import lombok.RequiredArgsConstructor;
 import org.ikigaidigital.domain.PlanType;

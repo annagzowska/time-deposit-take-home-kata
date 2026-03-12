@@ -1,5 +1,6 @@
 package org.ikigaidigital.domain;
 
+
 import java.util.Date;
 
 public class Withdrawal {
