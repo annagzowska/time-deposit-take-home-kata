@@ -10,11 +10,10 @@ import java.math.RoundingMode;
 
 
 @Service
-@RequiredArgsConstructor
 public class StudentInterestCalculationStrategy implements InterestCalculationStrategy{
     private static final int ZERO_INTEREST_DAYS = 30;
     private static final int ZERO_INTEREST_START_DAY = 366;
-    private static final int MONTHS = 12;
+    private static final int MONTHS_IN_YEAR = 12;
     private static final BigDecimal INTEREST_RATE = BigDecimal.valueOf(0.03);
 
     @Override
@@ -29,7 +28,7 @@ public class StudentInterestCalculationStrategy implements InterestCalculationSt
         } else if(timeDeposit.getDays() < ZERO_INTEREST_START_DAY) {
             return timeDeposit.getBalance()
                     .multiply(INTEREST_RATE)
-                    .divide(BigDecimal.valueOf(MONTHS), 2, RoundingMode.HALF_UP);
+                    .divide(BigDecimal.valueOf(MONTHS_IN_YEAR), 2, RoundingMode.HALF_UP);
         } else {
             return BigDecimal.ZERO;
         }

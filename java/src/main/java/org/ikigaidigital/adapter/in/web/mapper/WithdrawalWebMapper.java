@@ -5,6 +5,9 @@ import org.ikigaidigital.domain.model.Withdrawal;
 
 public class WithdrawalWebMapper {
 
+    private WithdrawalWebMapper() {
+    }
+
     public static WithdrawalDto toDto(Withdrawal withdrawal) {
         return WithdrawalDto.builder()
                 .id(withdrawal.getId())

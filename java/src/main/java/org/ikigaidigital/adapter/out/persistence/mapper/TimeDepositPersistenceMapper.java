@@ -9,8 +9,9 @@ import org.ikigaidigital.domain.model.Withdrawal;
 
 import java.util.List;
 
-@NoArgsConstructor
 public class TimeDepositPersistenceMapper {
+
+    private TimeDepositPersistenceMapper() {}
 
     public static TimeDepositEntity toEntity(TimeDeposit timeDeposit) {
         if (timeDeposit == null) {
@@ -34,6 +35,6 @@ public class TimeDepositPersistenceMapper {
 
     public static TimeDeposit toDomain(TimeDepositEntity entity) {
         final List<Withdrawal> withdrawals = entity.getWithdrawals().stream().map(WithdrawalPersistenceMapper::toDomain).toList();
-        return new TimeDeposit(entity.getId(), PlanType.valueOf(entity.getPlanType().toUpperCase()), entity.getBalance(), entity.getDays(),withdrawals);
+        return new TimeDeposit(entity.getId(), PlanType.valueOf(entity.getPlanType().toUpperCase()), entity.getBalance(), entity.getDays(), withdrawals);
     }
 }

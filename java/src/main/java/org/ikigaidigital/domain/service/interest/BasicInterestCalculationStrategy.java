@@ -11,7 +11,7 @@ import java.math.RoundingMode;
 public class BasicInterestCalculationStrategy implements InterestCalculationStrategy {
 
     private static final int ZERO_INTEREST_DAYS = 30;
-    private static final int MONTHS = 12;
+    private static final int MONTHS_IN_YEAR = 12;
     private static final BigDecimal INTEREST_RATE = BigDecimal.valueOf(0.01);
 
     @Override
@@ -27,6 +27,6 @@ public class BasicInterestCalculationStrategy implements InterestCalculationStra
 
         return timeDeposit.getBalance()
                 .multiply(INTEREST_RATE)
-                .divide(BigDecimal.valueOf(MONTHS), 2, RoundingMode.HALF_UP);
+                .divide(BigDecimal.valueOf(MONTHS_IN_YEAR), 2, RoundingMode.HALF_UP);
     }
 }

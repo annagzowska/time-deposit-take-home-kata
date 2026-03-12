@@ -5,8 +5,10 @@ import org.ikigaidigital.adapter.out.persistence.entity.TimeDepositEntity;
 import org.ikigaidigital.adapter.out.persistence.entity.WithdrawalEntity;
 import org.ikigaidigital.domain.model.Withdrawal;
 
-@NoArgsConstructor
 public class WithdrawalPersistenceMapper {
+
+    private WithdrawalPersistenceMapper() {
+    }
 
     public static Withdrawal toDomain(WithdrawalEntity withdrawalEntity) {
         return Withdrawal.builder()

@@ -25,8 +25,8 @@ public class TimeDepositPersistenceAdapter implements TimeDepositPersistencePort
     }
 
     @Override
-    public void saveAll(List<TimeDeposit> timeDeposit) {
-        List<TimeDepositEntity> entities = timeDeposit.stream().map(TimeDepositPersistenceMapper::toEntity).toList();
+    public void saveAll(List<TimeDeposit> timeDeposits) {
+        List<TimeDepositEntity> entities = timeDeposits.stream().map(TimeDepositPersistenceMapper::toEntity).toList();
         timeDepositRepository.saveAll(entities);
     }
 }
