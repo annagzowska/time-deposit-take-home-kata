@@ -2,6 +2,7 @@ package org.ikigaidigital.adapter.out;
 
 import lombok.RequiredArgsConstructor;
 import org.ikigaidigital.adapter.out.persistence.entity.TimeDepositEntity;
+import org.ikigaidigital.adapter.out.persistence.mapper.TimeDepositPersistenceMapper;
 import org.ikigaidigital.adapter.out.persistence.repository.SpringDataTimeDepositRepository;
 import org.ikigaidigital.application.port.out.TimeDepositPersistencePort;
 import org.ikigaidigital.domain.TimeDeposit;
@@ -19,14 +20,13 @@ public class TimeDepositPersistenceAdapter implements TimeDepositPersistencePort
     public List<TimeDeposit> findAll() {
         return timeDepositRepository.findAll()
                 .stream()
-                .map(TimeDepositEntity::toDomain)
+                .map(TimeDepositPersistenceMapper::toDomain)
                 .toList();
     }
 
     @Override
-    public TimeDeposit save(TimeDeposit timeDeposit) {
-        TimeDepositEntity entity = new TimeDepositEntity().fromDomain(timeDeposit);
-        TimeDepositEntity savedEntity = timeDepositRepository.save(entity);
-        return savedEntity.toDomain();
+    public void saveAll(List<TimeDeposit> timeDeposit) {
+        List<TimeDepositEntity> entities = timeDeposit.stream().map(TimeDepositPersistenceMapper::toEntity).toList();
+        timeDepositRepository.saveAll(entities);
     }
 }
