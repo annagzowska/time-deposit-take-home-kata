@@ -1,6 +1,6 @@
 package org.ikigaidigital;
 
-import org.ikigaidigital.application.service.interest.InterestCalculationStrategy;
+import org.ikigaidigital.application.service.TimeDepositCalculator;
 import org.ikigaidigital.application.service.interest.InterestCalculationStrategyResolver;
 import org.ikigaidigital.domain.PlanType;
 import org.ikigaidigital.domain.TimeDeposit;
