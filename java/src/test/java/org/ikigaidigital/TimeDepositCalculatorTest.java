@@ -21,7 +21,7 @@ public class TimeDepositCalculatorTest {
     public void updateBalance_Test() {
         TimeDepositCalculator calc = new TimeDepositCalculator(calculationStrategyResolver);
         List<TimeDeposit> plans = Arrays.asList(
-            new TimeDeposit(1, PlanType.BASIC, BigDecimal.valueOf(1234567.00), 45)
+            new TimeDeposit(1, PlanType.BASIC, BigDecimal.valueOf(1234567.00), 45, Collections.emptyList())
         );
         calc.updateBalance(plans);
 
